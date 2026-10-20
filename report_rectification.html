@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>官网整改汇报方案</title>
+<style>
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", sans-serif;
+    color: #1f2937;
+    font-size: 12.5px;
+    line-height: 1.75;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .page {
+    width: 210mm;
+    min-height: 296mm;
+    padding: 18mm 20mm 16mm 20mm;
+    margin: 0 auto;
+    page-break-after: always;
+    background: #ffffff;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  /* 封面 */
+  .cover {
+    display: flex; flex-direction: column;
+    justify-content: center;
+    background: linear-gradient(160deg, #0f172a 0%, #1e3a8a 55%, #312e81 100%);
+    color: #ffffff;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover .kicker {
+    font-size: 13px; letter-spacing: 6px; color: #a5b4fc;
+    margin-bottom: 18px; text-align: center;
+  }
+  .cover h1 {
+    font-size: 34px; font-weight: 700; letter-spacing: 3px;
+    margin: 0 0 14px; text-align: center; line-height: 1.4;
+  }
+  .cover .sub {
+    font-size: 15px; color: #c7d2fe; text-align: center; letter-spacing: 2px;
+  }
+  .cover .meta {
+    margin-top: 60px; text-align: center; font-size: 13px; color: #e0e7ff;
+    line-height: 2.1;
+  }
+  .cover .brand-bar {
+    position: absolute; bottom: 26mm; left: 20mm; right: 20mm;
+    text-align: center; font-size: 11px; color: #818cf8; letter-spacing: 2px;
+  }
+
+  /* 正文通用 */
+  h2.sec {
+    font-size: 17px; font-weight: 700; color: #1e3a8a;
+    border-left: 5px solid #2563eb;
+    padding-left: 11px; margin: 4px 0 14px; letter-spacing: 1px;
+  }
+  h3 {
+    font-size: 14px; font-weight: 700; color: #1f2937;
+    margin: 16px 0 8px;
+  }
+  .lead {
+    background: #eff6ff; border: 1px solid #dbeafe;
+    border-radius: 8px; padding: 12px 16px; margin-bottom: 14px;
+  }
+  .lead b { color: #1d4ed8; }
+  p { margin: 6px 0; text-align: justify; }
+  ul { margin: 6px 0 6px 0; padding-left: 20px; }
+  li { margin: 4px 0; text-align: justify; }
+  .muted { color: #6b7280; }
+
+  /* 表格 */
+  table {
+    width: 100%; border-collapse: collapse; margin: 10px 0 14px;
+    font-size: 12px;
+  }
+  th, td {
+    border: 1px solid #d1d5db; padding: 8px 10px;
+    text-align: left; vertical-align: top;
+  }
+  th {
+    background: #1e3a8a; color: #ffffff; font-weight: 600;
+    letter-spacing: 1px;
+  }
+  tr:nth-child(even) td { background: #f8fafc; }
+  td.k { font-weight: 600; color: #111827; white-space: nowrap; width: 21%; }
+  td.hl { color: #b91c1c; font-weight: 700; white-space: nowrap; width: 21%; }
+
+  /* 板块卡片 */
+  .board {
+    border: 1px solid #e5e7eb; border-left: 4px solid #2563eb;
+    border-radius: 6px; padding: 10px 14px; margin-bottom: 10px;
+    background: #ffffff;
+  }
+  .board .t {
+    font-weight: 700; color: #1e3a8a; font-size: 13px; margin-bottom: 4px;
+  }
+  .board p { margin: 3px 0; }
+  .board .tag { color: #b45309; font-weight: 600; }
+
+  .grid2 { display: flex; gap: 12px; }
+  .grid2 .col { flex: 1; }
+  .highlight {
+    border: 1px solid #fbbf24; background: #fffbeb; border-radius: 8px;
+    padding: 12px 16px; margin-bottom: 12px;
+  }
+  .highlight .t { font-weight: 700; color: #92400e; font-size: 13px; margin-bottom: 5px; }
+
+  .val { margin: 6px 0; padding-left: 2px; }
+  .val b { color: #1d4ed8; }
+  .footer-note {
+    margin-top: 16px; padding-top: 10px; border-top: 1px solid #e5e7eb;
+    color: #9ca3af; font-size: 10.5px; text-align: center;
+  }
+  .tag-row { margin-bottom: 4px; }
+  .pill {
+    display: inline-block; background: #eef2ff; color: #3730a3;
+    border-radius: 20px; padding: 1px 10px; font-size: 11px; margin: 2px 3px 2px 0;
+  }
+</style>
+</head>
+<body>
+
+<!-- 封面 -->
+<div class="page cover">
+  <div class="kicker">官 网 整 改 汇 报</div>
+  <h1>官网整改汇报方案</h1>
+  <div class="sub">甘肃胜利体育科技有限公司 · 官方网站整改</div>
+  <div class="meta">
+    汇报单位：甘肃胜利体育科技有限公司<br>
+    汇报日期：2026年10月
+  </div>
+  <div class="brand-bar">—— 内容补全 · 视觉更新 · 能力展示 · 安全落地 ——</div>
+</div>
+
+<!-- 第 1 页：结论 + 现状 -->
+<div class="page">
+  <h2 class="sec">结论</h2>
+  <div class="lead">
+    官网旧站存在 <b>「旧、停、空、缺」</b> 四类问题：设计过时、内容停更、近半栏目空白、无安全防护，另有错别字与失效图片。
+    本次整改以 <b>「内容补全、视觉更新、能力展示、安全落地」</b> 为主线，逐板块重构页面、补齐空白、更新案例，
+    新增 <b>维克多</b> 自有品牌展示与 <b>「快云动」小程序</b> 引流，并增加 3D 场馆模型展示；同时落实域名续费、安全防护与持续更新养护。
+    整改后，官网由「过时名片」升级为可信的企业形象窗口。
+  </div>
+
+  <h2 class="sec">一、网站现状（旧站问题）</h2>
+  <table>
+    <thead>
+      <tr><th style="width:22%">问题</th><th>具体表现</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="hl">设计过时</td><td>沿用老旧模板，页面观感陈旧，与公司当前实力不匹配。</td></tr>
+      <tr><td class="hl">内容停更</td><td>内容停留在较早年份，长期未更新，信息严重滞后。</td></tr>
+      <tr><td class="hl">近半栏目空白</td><td>资质荣誉、体考体测、招贤纳士等多个栏目无实质内容。</td></tr>
+      <tr><td class="hl">无安全防护</td><td>站点访问提示不安全，影响客户信任与合作洽谈。</td></tr>
+      <tr><td class="hl">错别字与失效图</td><td>多处错别字、部分图片无法显示，损害专业形象。</td></tr>
+    </tbody>
+  </table>
+
+  <h2 class="sec">二、整改内容（逐板块）</h2>
+  <p class="muted">整改后栏目统一为：关于胜利、业务版图、标杆案例、动态、联系、维克多。以下逐板块说明整改内容。</p>
+
+  <div class="board">
+    <div class="t">1. 关于胜利</div>
+    <p><span class="tag">整改：</span>补齐原本空白的介绍内容，梳理公司基本情况与核心实力。</p>
+    <p><span class="tag">新增：</span>企业概况、核心实力、发展历程，以及资质荣誉——七项二级资质、ISO 三体系认证、国家高新技术企业、甘肃省「专精特新」中小企业。</p>
+  </div>
+
+  <div class="board">
+    <div class="t">2. 业务版图</div>
+    <p><span class="tag">整改：</span>梳理业务结构，归拢为清晰的四大产品线。</p>
+    <p><span class="tag">新增：</span>智慧体育公园、智慧健身步道、智慧体考体测、室外全民健身器材。</p>
+  </div>
+
+  <div class="board">
+    <div class="t">3. 标杆案例</div>
+    <p><span class="tag">整改：</span>更新案例内容、替换失效图片、修正错别字。</p>
+    <p><span class="tag">新增：</span>兰州奥体中心智慧化运营、通渭县体育馆（中标 327 万元）、临夏州全民健身中心；集中展示中标项目 72+ 项、累计中标金额 1.35 亿+。</p>
+  </div>
+</div>
+
+<!-- 第 2 页：整改内容（续）+ 新增亮点 -->
+<div class="page">
+  <h2 class="sec">二、整改内容（逐板块 · 续）</h2>
+
+  <div class="board">
+    <div class="t">4. 动态</div>
+    <p><span class="tag">整改：</span>清除陈旧失效内容，恢复动态更新机制。</p>
+    <p><span class="tag">新增：</span>中标通渭县体育馆、承接兰州奥体中心智慧化运营、获评「专精特新」、获评国家高新技术企业、通过 ISO 三体系认证等 8 条动态。</p>
+  </div>
+
+  <div class="board">
+    <div class="t">5. 联系</div>
+    <p><span class="tag">整改：</span>核对并修正联系方式，确保信息准确。</p>
+    <p><span class="tag">新增：</span>更新公司地址、电话、400 热线、商务合作、邮箱，并新增在线留言入口，方便客户第一时间对接。</p>
+  </div>
+
+  <h2 class="sec">三、新增亮点</h2>
+
+  <div class="highlight">
+    <div class="t">亮点一：维克多体育用品品牌展示 + 引流「快云动」小程序</div>
+    <p>新增自有品牌板块 <b>维克多</b>，定位「专业、耐用、高性价比」，覆盖六大类产品：</p>
+    <div class="tag-row">
+      <span class="pill">羽毛球</span><span class="pill">足球</span><span class="pill">球拍</span>
+      <span class="pill">护具</span><span class="pill">运动鞋服</span><span class="pill">健身器材</span>
+    </div>
+    <p>页面引导访客微信搜索 <b>「快云动」</b> 小程序在线选购，让官网兼具品牌展示与选购入口。</p>
+  </div>
+
+  <div class="highlight">
+    <div class="t">亮点二：3D 场馆模型展示</div>
+    <p>新增 3D 场馆模型展示，可拖动旋转、配合图文讲解，直观呈现场馆建设能力，用于投标评审与政府汇报场景。</p>
+  </div>
+
+  <h2 class="sec">四、整改落地</h2>
+  <ul>
+    <li><b>域名续费：</b>完成原域名续费，保留原有访问入口，客户访问习惯不受影响。</li>
+    <li><b>新站替换旧站：</b>新站替换旧站并沿用原域名，实现无缝衔接。</li>
+    <li><b>安全防护：</b>为站点启用安全防护，消除访问时的「不安全」提示，提升客户信任。</li>
+    <li><b>持续更新养护：</b>建立持续更新养护机制，动态与案例保持常态化更新。</li>
+  </ul>
+
+  <h2 class="sec">五、价值</h2>
+  <ul>
+    <li><b>提升公司形象：</b>官网形象与公司真实实力相匹配，增强客户信任。</li>
+    <li><b>助力招投标：</b>案例、资质与 3D 模型集中展示，为投标评审提供有力支撑。</li>
+    <li><b>助力政府合作：</b>完整的业务版图与标杆案例，利于政府项目汇报与对接。</li>
+    <li><b>打通品牌与选购：</b>维克多品牌 +「快云动」小程序，让官网成为品牌展示与在线选购的统一入口。</li>
+  </ul>
+
+  <div class="footer-note">甘肃胜利体育科技有限公司 · 官网整改汇报方案 · 2026年10月</div>
+</div>
+
+</body>
+</html>

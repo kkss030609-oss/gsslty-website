@@ -1,4 +1,4 @@
-/* 甘肃胜利体育科技 · 站点脚本（顶栏/页脚注入 + 交互） */
+/* 甘肃胜利体育科技 · 站点脚本（顶栏/页脚注入 + 基础交互） */
 
 const COMPANY = {
   name: "甘肃胜利体育科技有限公司",
@@ -11,20 +11,20 @@ const COMPANY = {
 
 const NAV = [
   { href: "index.html", label: "首页" },
+  { href: "products.html", label: "产品" },
+  { href: "solutions.html", label: "解决方案" },
+  { href: "cases.html", label: "工程案例" },
+  { href: "qualifications.html", label: "品质认证" },
   { href: "about.html", label: "关于胜利" },
-  { href: "products.html", label: "业务版图" },
-  { href: "cases.html", label: "标杆案例" },
   { href: "victor.html", label: "维克多" },
   { href: "news.html", label: "动态" },
-  { href: "contact.html", label: "联系" },
 ];
 
 const LOGO = `
   <svg viewBox="0 0 40 40" fill="none" width="40" height="40" aria-hidden="true">
-    <rect width="40" height="40" rx="11" fill="url(#lg1)"/>
+    <rect width="40" height="40" rx="9" fill="#006d33"/>
     <path d="M12 27 L20 13 L28 27" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
     <path d="M16 22 H24" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/>
-    <defs><linearGradient id="lg1" x1="0" y1="0" x2="40" y2="40"><stop stop-color="#22d3ee"/><stop offset=".5" stop-color="#4f7cff"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient></defs>
   </svg>`;
 
 function headerHTML(active) {
@@ -64,21 +64,21 @@ function footerHTML() {
             <span class="brand-mark">${LOGO}</span>
             <span class="brand-name">${COMPANY.name}<small>SHENGLI SPORTS TECH</small></span>
           </a>
-          <p>甘肃体育场地建设龙头、西北智慧体育先行者。专注体育场地建设与智慧体育整体解决方案，让运动更科学、更智慧。</p>
+          <p>专注体育场地建设与智慧体育整体解决方案，深耕甘肃、辐射西北，累计中标项目 72+ 项、中标金额超 1.35 亿元。</p>
         </div>
         <div class="footer-col">
           <h4>快速导航</h4>
           <ul>
-            ${NAV.slice(0, 6).map(n => `<li><a href="${n.href}">${n.label}</a></li>`).join("")}
+            ${NAV.map(n => `<li><a href="${n.href}">${n.label}</a></li>`).join("")}
           </ul>
         </div>
         <div class="footer-col">
-          <h4>业务版图</h4>
+          <h4>业务体系</h4>
           <ul>
-            <li><a href="products.html">智慧体育公园</a></li>
-            <li><a href="products.html">智慧健身步道</a></li>
-            <li><a href="products.html">智慧体考体测</a></li>
-            <li><a href="products.html">室外全民健身器材</a></li>
+            <li><a href="products.html">四大产品线</a></li>
+            <li><a href="solutions.html">行业解决方案</a></li>
+            <li><a href="cases.html">工程案例</a></li>
+            <li><a href="qualifications.html">品质认证</a></li>
             <li><a href="victor.html">维克多 · 体育用品</a></li>
           </ul>
         </div>
@@ -93,7 +93,7 @@ function footerHTML() {
       </div>
       <div class="footer-bottom">
         <span>© <span id="year"></span> ${COMPANY.name} · 版权所有</span>
-        <span>甘肃体育场地建设龙头 · 西北智慧体育先行者</span>
+        <span>专注体育场地建设与智慧体育整体解决方案</span>
       </div>
     </div>
   </footer>`;
@@ -108,14 +108,6 @@ function currentPage() {
 document.addEventListener("DOMContentLoaded", () => {
   const active = currentPage();
 
-  // 背景 + 顶栏 + 页脚
-  const bg = document.createElement("div");
-  bg.className = "site-bg";
-  document.body.prepend(bg);
-  const grain = document.createElement("div");
-  grain.className = "grain";
-  document.body.prepend(grain);
-
   document.getElementById("siteHeader")?.remove();
   document.getElementById("siteFooter")?.remove();
   document.body.insertAdjacentHTML("afterbegin", headerHTML(active));
@@ -123,16 +115,14 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("year").textContent = new Date().getFullYear();
 
   initHeader();
-  initReveal();
-  initCounters();
   initContactForm();
-  initCaseCarousel();
 });
 
 function initHeader() {
   const header = document.getElementById("siteHeader");
   const burger = document.getElementById("burger");
   const menu = document.getElementById("mobileMenu");
+  if (!header || !burger || !menu) return;
   const onScroll = () => header.classList.toggle("scrolled", window.scrollY > 20);
   onScroll();
   window.addEventListener("scroll", onScroll, { passive: true });
@@ -152,53 +142,6 @@ function initHeader() {
   menu.querySelectorAll("a").forEach(a => a.addEventListener("click", closeMenu));
 }
 
-function initReveal() {
-  const els = document.querySelectorAll(".reveal");
-  if (!("IntersectionObserver" in window)) {
-    els.forEach(el => el.classList.add("in"));
-    return;
-  }
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add("in");
-        io.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
-  els.forEach(el => io.observe(el));
-}
-
-function initCounters() {
-  const els = document.querySelectorAll("[data-count]");
-  if (!els.length) return;
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (!e.isIntersecting) return;
-      animateCount(e.target);
-      io.unobserve(e.target);
-    });
-  }, { threshold: 0.4 });
-  els.forEach(el => io.observe(el));
-}
-
-function animateCount(el) {
-  const target = parseFloat(el.dataset.count);
-  const decimals = parseInt(el.dataset.decimals || "0", 10);
-  const suffix = el.dataset.suffix || "";
-  const prefix = el.dataset.prefix || "";
-  const dur = 1800;
-  const start = performance.now();
-  function tick(now) {
-    const p = Math.min((now - start) / dur, 1);
-    const eased = 1 - Math.pow(1 - p, 3);
-    el.textContent = prefix + (target * eased).toFixed(decimals) + suffix;
-    if (p < 1) requestAnimationFrame(tick);
-    else el.textContent = prefix + target.toFixed(decimals) + suffix;
-  }
-  requestAnimationFrame(tick);
-}
-
 function initContactForm() {
   const form = document.getElementById("contactForm");
   if (!form) return;
@@ -212,85 +155,5 @@ function initContactForm() {
     window.location.href = `mailto:${COMPANY.email}?subject=${subject}&body=${body}`;
     const note = form.querySelector(".form-note");
     if (note) note.textContent = "正在打开邮件客户端提交…（或直接致电 400-666-0678）";
-  });
-}
-
-/* ---- 标杆案例轮播（卡片式 + 进度条） ---- */
-function initCaseCarousel() {
-  const carousel = document.getElementById("caseCarousel");
-  if (!carousel) return;
-  const slides = carousel.querySelectorAll(".case-slide");
-  const dotsWrap = document.getElementById("caseDots");
-  const progress = document.getElementById("caseProgress");
-  if (!slides.length || !dotsWrap || !progress) return;
-
-  const INTERVAL = 5000;
-  let current = 0;
-  let timer = null;
-  let raf = null;
-  let start = 0;
-
-  // 生成圆点
-  slides.forEach((_, i) => {
-    const b = document.createElement("button");
-    b.className = "case-dot" + (i === 0 ? " active" : "");
-    b.setAttribute("aria-label", `切换到第 ${i + 1} 个案例`);
-    b.addEventListener("click", () => { goTo(i); restart(); });
-    dotsWrap.appendChild(b);
-  });
-  const dots = dotsWrap.querySelectorAll(".case-dot");
-
-  function render(i) {
-    slides.forEach((s, idx) => s.classList.toggle("active", idx === i));
-    dots.forEach((d, idx) => d.classList.toggle("active", idx === i));
-    current = i;
-  }
-
-  function goTo(i) {
-    const n = slides.length;
-    render((i + n) % n);
-  }
-
-  function stop() {
-    if (timer) { clearInterval(timer); timer = null; }
-    if (raf) { cancelAnimationFrame(raf); raf = null; }
-    progress.style.transition = "none";
-    progress.style.width = "0%";
-  }
-
-  function run() {
-    stop();
-    start = performance.now();
-    progress.style.transition = "none";
-    progress.style.width = "0%";
-    // 强制回流后再启动过渡
-    void progress.offsetWidth;
-    progress.style.transition = `width ${INTERVAL}ms linear`;
-    progress.style.width = "100%";
-    const tick = (now) => {
-      if (now - start >= INTERVAL) {
-        goTo(current + 1);
-        restart();
-        return;
-      }
-      raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-  }
-
-  function restart() { run(); }
-
-  // 首次显示
-  render(0);
-  run();
-
-  // 悬停暂停 / 移出恢复
-  carousel.addEventListener("mouseenter", stop);
-  carousel.addEventListener("mouseleave", run);
-
-  // 标签页切走时暂停，切回时恢复
-  document.addEventListener("visibilitychange", () => {
-    if (document.hidden) stop();
-    else run();
   });
 }
